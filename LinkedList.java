@@ -35,6 +35,7 @@ public class LinkedList<T extends Object> implements SimpleList<T> {
     * @param data the data to be checked within the linked list
     * @return a boolean
     */
+    @Override
     public boolean contains(T data) {
         boolean returned = false;
         if (head == null) {
@@ -87,7 +88,7 @@ public class LinkedList<T extends Object> implements SimpleList<T> {
 
             Node<T> switcher = pointer; // n
             pointer.setData(temp.getData()); // move head + 1 data to head
-            temp.setData(pointer.getData()); // move head data to head + 1
+            temp.setData(switcher.getData()); // move head data to head + 1
             return switcher.getData();
         }
     }
@@ -156,8 +157,9 @@ public class LinkedList<T extends Object> implements SimpleList<T> {
     * @param data the data provided
     * @param index the index where the data will be stored
     */
+    @Override
     public void addAtIndex(T data, int index) {
-        if (index > size && size > 0 || index < 0) {
+        if (index > size + 1|| index < 0) {
             throw new IllegalArgumentException("Index out of bounds");
         } else if (size == 0) {
             head = new Node<T>(data, null);
